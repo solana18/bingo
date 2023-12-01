@@ -19,4 +19,14 @@ function determineBingoWin(calledNumbers, bingoCard) {
     return false;
 }
 
-module.exports = { determineBingoWin };
+function determineGuaranteedWinningBoard(calledNumbers, ...bingoBoards) {
+    for (let i = 0; i < bingoBoards.length; i++) {
+        const rows = bingoBoards[i];
+        if (determineBingoWin(calledNumbers, rows))
+            return i + 1; // Return the board index (1-based)
+    }
+
+    return -1; // No guaranteed win
+}
+
+module.exports = { determineBingoWin, determineGuaranteedWinningBoard };
